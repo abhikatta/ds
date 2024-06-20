@@ -32,7 +32,7 @@ export class LinkedList {
     this.head = newHead;
     newHead.next = current;
   };
-  appendAfterValue = (value: val, position: val) => {
+  appendAfterValue = (position: val, value: val) => {
     if (!this.head) {
       return;
     }
@@ -48,7 +48,39 @@ export class LinkedList {
       current = current.next;
     }
   };
-  appendAtPosition = (value: val, position: index) => {
-    // TODO
+  appendAtindex = (index: number, value: val) => {
+    if (!this.head) return;
+    let count = 0;
+    let current = this.head;
+    while (current) {
+      if (current.next) {
+        if (count + 1 === index) {
+          const currentNext = current.next;
+          const element = new NodeElement(value);
+          current.next = element;
+          element.next = currentNext;
+          break;
+        }
+        current = current.next;
+        count += 1;
+      }
+    }
+  };
+  traverse = () => {
+    if (!this.head) {
+      return;
+    } else {
+      let current = this.head;
+      const result = [];
+      while (current) {
+        result.push(current.val);
+        if (current.next) {
+          current = current.next;
+        } else {
+          break;
+        }
+      }
+      return result;
+    }
   };
 }
