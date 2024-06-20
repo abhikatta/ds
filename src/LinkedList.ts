@@ -18,6 +18,8 @@ export class LinkedList {
   append = (value: val): void => {
     if (!this.head) {
       this.head = new NodeElement(value);
+      this.length += 1;
+      return;
     }
     let current = this.head;
     while (current.next) {

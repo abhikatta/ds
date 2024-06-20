@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { LinkedList } from "./LinkedList";
 import { val } from "./types/node";
 
@@ -12,9 +12,8 @@ const App = () => {
     setElements(elements);
   };
 
-  const showelements = () => {
+  const showElements = () => {
     if (elements) {
-      ll.pop();
       elements.forEach((element) => {
         ll.append(element);
       });
@@ -28,7 +27,17 @@ const App = () => {
         onChange={(e) => handleChange(e.target.value)}
         placeholder="Enter array elements with elements separated by spaces"
       />
-      <button onClick={showelements}>Submit</button>
+      <button onClick={showElements}>Show</button>
+      <button
+        onClick={() => {
+          ll.pop();
+          showElements();
+        }}>
+        Pop
+      </button>
+      <button onClick={() => ll.shift()}>Shift</button>
+      {/* <div><button>Pop At Index</button></div> */}
+
       <div style={{ flexDirection: "row", display: "flex" }}>
         {values &&
           values.map((item, index) => {
