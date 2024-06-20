@@ -8,6 +8,17 @@ const App = () => {
   ll.appendAtindex(2, 10);
   ll.prepend(9);
   console.log(ll.traverse());
+  ll.pop();
+  console.log(ll.traverse());
+  ll.pop();
+  console.log(ll.traverse());
+  ll.pop();
+  console.log(ll.traverse());
+  ll.pop();
+  console.log(ll.traverse());
+  const a = ll.pop();
+  console.log(ll.traverse());
+  console.log(a);
 
   return <div>App</div>;
 };

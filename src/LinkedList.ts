@@ -8,7 +8,7 @@ export class NodeElement {
   }
 }
 export class LinkedList {
-  head: NodeElement | null;
+  private head: NodeElement | null;
   constructor(value: val) {
     this.head = new NodeElement(value);
   }
@@ -68,7 +68,7 @@ export class LinkedList {
   };
   traverse = () => {
     if (!this.head) {
-      return;
+      return [null];
     } else {
       let current = this.head;
       const result = [];
@@ -83,4 +83,23 @@ export class LinkedList {
       return result;
     }
   };
+  pop() {
+    if (!this.head) {
+      return;
+    } else if (this.head && !this.head.next) {
+      const element = this.head;
+      this.head = null;
+      return element;
+    } else {
+      let current = this.head;
+      while (current.next) {
+        if (!current.next.next) {
+          const element = current.next;
+          current.next = null;
+          return element;
+        }
+        current = current.next;
+      }
+    }
+  }
 }
