@@ -7,18 +7,11 @@ const App = () => {
   ll.appendAfterValue(14, 18);
   ll.appendAtindex(2, 10);
   ll.prepend(9);
+
   console.log(ll.traverse());
-  ll.pop();
+  ll.popElement(12);
+  ll.popElement(9);
   console.log(ll.traverse());
-  ll.pop();
-  console.log(ll.traverse());
-  ll.pop();
-  console.log(ll.traverse());
-  ll.pop();
-  console.log(ll.traverse());
-  const a = ll.pop();
-  console.log(ll.traverse());
-  console.log(a);
 
   return <div>App</div>;
 };

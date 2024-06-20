@@ -13,7 +13,7 @@ export class LinkedList {
     this.head = new NodeElement(value);
   }
 
-  append = (value: val) => {
+  append = (value: val): void => {
     if (!this.head) {
       this.head = new NodeElement(value);
     }
@@ -23,7 +23,7 @@ export class LinkedList {
     }
     current.next = new NodeElement(value);
   };
-  prepend = (value: val) => {
+  prepend = (value: val): void => {
     if (!this.head) {
       this.head = new NodeElement(value);
     }
@@ -32,7 +32,7 @@ export class LinkedList {
     this.head = newHead;
     newHead.next = current;
   };
-  appendAfterValue = (position: val, value: val) => {
+  appendAfterValue = (position: val, value: val): void => {
     if (!this.head) {
       return;
     }
@@ -48,7 +48,7 @@ export class LinkedList {
       current = current.next;
     }
   };
-  appendAtindex = (index: number, value: val) => {
+  appendAtindex = (index: number, value: val): void => {
     if (!this.head) return;
     let count = 0;
     let current = this.head;
@@ -66,9 +66,9 @@ export class LinkedList {
       }
     }
   };
-  traverse = () => {
+  traverse = (): val[] | null => {
     if (!this.head) {
-      return [null];
+      return null;
     } else {
       let current = this.head;
       const result = [];
@@ -83,9 +83,9 @@ export class LinkedList {
       return result;
     }
   };
-  pop() {
+  pop = (): NodeElement | null => {
     if (!this.head) {
-      return;
+      return null;
     } else if (this.head && !this.head.next) {
       const element = this.head;
       this.head = null;
@@ -100,6 +100,43 @@ export class LinkedList {
         }
         current = current.next;
       }
+      return null;
     }
-  }
+  };
+  popIndexElement = (index: number): NodeElement | null => {
+    let count = 0;
+    if (!this.head) {
+      return null;
+    }
+    let current = this.head;
+    while (current.next) {
+      if (count + 1 === index) {
+        current.next = current.next.next;
+        break;
+      }
+      count += 1;
+      current = current.next;
+    }
+    return null;
+  };
+  popElement = (value: val): NodeElement | null => {
+    if (!this.head) {
+      return null;
+    }
+    if (this.head.val === value) {
+      const element = this.head;
+      this.head = this.head.next;
+      return element;
+    } else {
+      let current = this.head;
+      while (current.next) {
+        if (current.next.val === value) {
+          const element = current;
+          return element;
+        }
+        current = current.next;
+      }
+      return null;
+    }
+  };
 }
