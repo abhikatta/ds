@@ -1,31 +1,46 @@
+import { useState } from "react";
 import { LinkedList } from "./LinkedList";
+import { val } from "./types/node";
 
 const App = () => {
-  const ll = new LinkedList(12);
+  const [elements, setElements] = useState<val[]>([]);
+  const [values, setValues] = useState<val[] | null>([]);
+  const ll = new LinkedList(0);
+  ll.pop();
+  const handleChange = (vals: string) => {
+    const elements = vals.split(" ");
+    setElements(elements);
+  };
 
-  console.log(ll.traverse(), ll.length);
+  const showelements = () => {
+    if (elements) {
+      ll.pop();
+      elements.forEach((element) => {
+        ll.append(element);
+      });
+      setValues(ll.traverse());
+    }
+  };
 
-  ll.append(14);
-  console.log(ll.traverse(), ll.length);
-
-  ll.appendAfterValue(14, 18);
-  console.log(ll.traverse(), ll.length);
-
-  ll.appendAtindex(2, 10);
-  console.log(ll.traverse(), ll.length);
-
-  ll.prepend(9);
-  console.log(ll.traverse(), ll.length);
-
-  ll.popElement(12);
-  console.log(ll.traverse(), ll.length);
-
-  ll.popElement(9);
-  console.log(ll.traverse(), ll.length);
-  ll.shift();
-  console.log(ll.traverse(), ll.length);
-
-  return <div>App</div>;
+  return (
+    <div>
+      <input
+        onChange={(e) => handleChange(e.target.value)}
+        placeholder="Enter array elements with elements separated by spaces"
+      />
+      <button onClick={showelements}>Submit</button>
+      <div style={{ flexDirection: "row", display: "flex" }}>
+        {values &&
+          values.map((item, index) => {
+            return (
+              <p key={index}>
+                {item} {index + 1 < values.length ? " --> " : ""}
+              </p>
+            );
+          })}
+      </div>
+    </div>
+  );
 };
 
 export default App;
