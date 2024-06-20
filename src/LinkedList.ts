@@ -12,7 +12,7 @@ export class LinkedList {
   constructor(value: val) {
     this.head = new NodeElement(value);
   }
-
+  /**Appends an element at the end of the list, creates new list with element if list does not exist. */
   append = (value: val): void => {
     if (!this.head) {
       this.head = new NodeElement(value);
@@ -23,6 +23,7 @@ export class LinkedList {
     }
     current.next = new NodeElement(value);
   };
+  /**Appends an element at the begining of the list */
   prepend = (value: val): void => {
     if (!this.head) {
       this.head = new NodeElement(value);
@@ -32,9 +33,11 @@ export class LinkedList {
     this.head = newHead;
     newHead.next = current;
   };
+
+  /** Appends value to the list after specific value if the value exists, else throws error if list is empty*/
   appendAfterValue = (position: val, value: val): void => {
     if (!this.head) {
-      return;
+      throw Error("List is null!");
     }
     let current = this.head;
     while (current?.next) {
@@ -48,8 +51,12 @@ export class LinkedList {
       current = current.next;
     }
   };
+
+  /** Appends value to the list, else throws error if list is empty*/
   appendAtindex = (index: number, value: val): void => {
-    if (!this.head) return;
+    if (!this.head) {
+      throw Error("List is null!");
+    }
     let count = 0;
     let current = this.head;
     while (current) {
@@ -66,6 +73,8 @@ export class LinkedList {
       }
     }
   };
+
+  /** Returns the list values in form of an array, else returns null if list is empty*/
   traverse = (): val[] | null => {
     if (!this.head) {
       return null;
@@ -83,6 +92,8 @@ export class LinkedList {
       return result;
     }
   };
+
+  /** Removes and returns the last element, else returns null if list is empty.*/
   pop = (): NodeElement | null => {
     if (!this.head) {
       return null;
@@ -103,6 +114,8 @@ export class LinkedList {
       return null;
     }
   };
+
+  /** Returns the first element it finds in the list with the given index else returns null if element is not found.*/
   popIndexElement = (index: number): NodeElement | null => {
     let count = 0;
     if (!this.head) {
@@ -119,6 +132,8 @@ export class LinkedList {
     }
     return null;
   };
+
+  /** Returns the first element it finds in the list with the same value else returns null if element is not found.*/
   popElement = (value: val): NodeElement | null => {
     if (!this.head) {
       return null;
@@ -137,6 +152,16 @@ export class LinkedList {
         current = current.next;
       }
       return null;
+    }
+  };
+  /** Returns the first element in the list else returns null if list is empty.*/
+  shift = (): NodeElement | null => {
+    if (!this.head) {
+      return null;
+    } else {
+      const element = this.head;
+      this.head = this.head.next;
+      return element;
     }
   };
 }

@@ -12,6 +12,7 @@ const App = () => {
   ll.popElement(12);
   ll.popElement(9);
   console.log(ll.traverse());
+  ll.shift();
 
   return <div>App</div>;
 };
