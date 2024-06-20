@@ -1,57 +1,54 @@
-import { val } from "./types/node";
-
-class NodeElement {
-  value: val;
-  next: null;
-
-  constructor(val: val) {
-    this.value = val;
-    this.next = null;
+import { NodeElementType, val } from "./types/node";
+export class NodeElement {
+  val: val;
+  next: NodeElementType | null;
+  constructor(value: val, next = null) {
+    this.val = value;
+    this.next = next;
   }
 }
-
 export class LinkedList {
-  head: null;
-  constructor() {
-    this.head = null;
+  head: NodeElement | null;
+  constructor(value: val) {
+    this.head = new NodeElement(value);
   }
 
-  append(value: val) {
-    if (this.list) {
-      const ele = new NodeElement(value);
-      let current = this.list;
-      while (current.next) {
-        current = current.next;
-      }
-      current.next = ele.node;
-      ele.node.prev = current;
+  append = (value: val) => {
+    if (!this.head) {
+      this.head = new NodeElement(value);
     }
-  }
-
-  log = () => {
-    let values: val[] = [];
-    if (this.list) {
-      let head = this.list;
-      while (head.next) {
-        values.push(head.val);
-        head = head.next;
-      }
+    let current = this.head;
+    while (current.next) {
+      current = current.next;
     }
-    return values;
+    current.next = new NodeElement(value);
   };
-
-  pop = () => {
-    if (!this.list) {
-      return null;
-    } else {
-      let current = this.list;
-      while (current.next) {
-        if (!current.next.next) {
-          current.next = null;
-          break;
-        }
-        current = current.next;
-      }
+  prepend = (value: val) => {
+    if (!this.head) {
+      this.head = new NodeElement(value);
     }
+    const current = this.head;
+    const newHead = new NodeElement(value);
+    this.head = newHead;
+    newHead.next = current;
+  };
+  appendAfterValue = (value: val, position: val) => {
+    if (!this.head) {
+      return;
+    }
+    let current = this.head;
+    while (current?.next) {
+      if (current?.val === position) {
+        const element = new NodeElement(value);
+        const currentNext = current.next;
+        current.next = element;
+        element.next = currentNext;
+        break;
+      }
+      current = current.next;
+    }
+  };
+  appendAtPosition = (value: val, position: index) => {
+    // TODO
   };
 }
