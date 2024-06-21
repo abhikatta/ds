@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { LinkedList } from "./LinkedList";
+import { LinkedList } from "./DS/LinkedList";
 import { val } from "./types/node";
+import DisplayValuesLL from "./Components/DisplayValuesLL";
 
 const App = () => {
   const [inputString, setInputString] = useState("");
@@ -54,20 +55,14 @@ const App = () => {
       <button disabled={!submitClicked} onClick={clearAll}>
         Clear Input
       </button>
-      <button onClick={Pop}>Pop</button>
-      <button onClick={Shift}>Shift</button>
+      <button disabled={!submitClicked} onClick={Pop}>
+        Pop
+      </button>
+      <button disabled={!submitClicked} onClick={Shift}>
+        Shift
+      </button>
       {/* <div><button>Pop At Index</button></div> */}
-
-      <div style={{ flexDirection: "row", display: "flex" }}>
-        {values &&
-          values.map((item, index) => {
-            return (
-              <p key={index}>
-                {item} {index + 1 < values.length ? " --> " : ""}
-              </p>
-            );
-          })}
-      </div>
+      {values && <DisplayValuesLL values={values} />}
     </div>
   );
 };
