@@ -1,4 +1,4 @@
-import { val } from "../types/node";
+import { val } from "./types/node";
 
 const DisplayValuesLL = ({ values }: { values: val[] }) => {
   return (

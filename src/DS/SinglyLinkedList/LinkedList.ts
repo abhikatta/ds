@@ -1,4 +1,4 @@
-import { NodeElementType, val } from "../types/node";
+import { NodeElementType, val } from "./types/node";
 export class NodeElement {
   val: val;
   next: NodeElementType | null;
