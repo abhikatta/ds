@@ -97,27 +97,26 @@ const App = () => {
           onClick={() =>
             setCustomModification(customModificationEnum.PopAtIndex)
           }>
-          Pop At Index
+          {customModificationEnum.PopAtIndex}
         </button>
         <button
           onClick={() =>
             setCustomModification(customModificationEnum.PopValue)
           }>
-          Pop After Value
+          {customModificationEnum.PopValue}
         </button>
         <button
           onClick={() =>
             setCustomModification(customModificationEnum.AppendAtIndex)
           }>
-          Append At Index
+          {customModificationEnum.AppendAtIndex}
         </button>
         <button
           onClick={() =>
             setCustomModification(customModificationEnum.AppendAfterValue)
           }>
-          Append After Value
+          {customModificationEnum.AppendAfterValue}
         </button>
-
         {customModification !== "" && (
           <>
             <input
