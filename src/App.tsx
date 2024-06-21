@@ -2,11 +2,15 @@ import { useState } from "react";
 import { LinkedList } from "./DS/LinkedList";
 import { val } from "./types/node";
 import DisplayValuesLL from "./Components/DisplayValuesLL";
+import { customModificationEnum } from "./types/customModification";
 
 const App = () => {
   const [inputString, setInputString] = useState("");
   const [values, setValues] = useState<val[] | null>([]);
   const [submitClicked, setSubmitClicked] = useState(false);
+  const [customModification, setCustomModification] = useState("");
+  const [customModValue, setCustomModValue] = useState("");
+  const [customModPositionValue, setCustomModPositionValue] = useState("");
   const [list, setList] = useState<LinkedList>();
   const handleShow = () => {
     setSubmitClicked(true);
@@ -37,6 +41,33 @@ const App = () => {
     setInputString("");
     setValues([]);
   };
+
+  const handleCustomMod = () => {
+    if (list) {
+      switch (customModification) {
+        case customModificationEnum.AppendAtIndex:
+          list.appendAtindex(parseInt(customModPositionValue), customModValue);
+          break;
+        case customModificationEnum.AppendAfterValue:
+          list.appendAfterValue(customModPositionValue, customModValue);
+          break;
+
+        case customModificationEnum.PopAtIndex:
+          list.popIndexElement(parseInt(customModPositionValue));
+          break;
+
+        case customModificationEnum.PopValue:
+          list.popElement(customModPositionValue);
+
+          break;
+
+        default:
+          break;
+      }
+      setValues(list.traverse());
+    }
+  };
+
   return (
     <div>
       <input
@@ -46,7 +77,7 @@ const App = () => {
         placeholder="Enter array elements with elements separated by spaces"
       />
       <button
-        disabled={submitClicked}
+        disabled={submitClicked && inputString.trim().length <= 0}
         onClick={() => {
           inputString.trim().length > 0 && handleShow();
         }}>
@@ -61,7 +92,50 @@ const App = () => {
       <button disabled={!submitClicked} onClick={Shift}>
         Shift
       </button>
-      {/* <div><button>Pop At Index</button></div> */}
+      <div>
+        <button
+          onClick={() =>
+            setCustomModification(customModificationEnum.PopAtIndex)
+          }>
+          Pop At Index
+        </button>
+        <button
+          onClick={() =>
+            setCustomModification(customModificationEnum.PopValue)
+          }>
+          Pop After Value
+        </button>
+        <button
+          onClick={() =>
+            setCustomModification(customModificationEnum.AppendAtIndex)
+          }>
+          Append At Index
+        </button>
+        <button
+          onClick={() =>
+            setCustomModification(customModificationEnum.AppendAfterValue)
+          }>
+          Append After Value
+        </button>
+
+        {customModification !== "" && (
+          <>
+            <input
+              onChange={(e) => setCustomModPositionValue(e.target.value)}
+              placeholder={`Enter index/value after for ${customModification}`}
+            />
+            {!customModification.toLowerCase().includes("pop") && (
+              <input
+                onChange={(e) => setCustomModValue(e.target.value)}
+                placeholder="Enter the value"
+              />
+            )}
+            <button onClick={handleCustomMod}>
+              Click to {customModification}
+            </button>
+          </>
+        )}
+      </div>
       {values && <DisplayValuesLL values={values} />}
     </div>
   );
