@@ -50,7 +50,28 @@ export class Tree {
       this.traverseInorder(root.left);
       this.traverseResult.push(root.val);
       this.traverseInorder(root.right);
+
       return this.traverseResult;
     }
   }
+  traversePreorder = (root: TreeNodeElement | null): number[] | null => {
+    if (!root) {
+      return null;
+    } else {
+      this.traverseResult.push(root.val);
+      this.traversePreorder(root.left);
+      this.traversePreorder(root.right);
+      return this.traverseResult;
+    }
+  };
+  traversePostorder = (root: TreeNodeElement | null): number[] | null => {
+    if (!root) {
+      return null;
+    } else {
+      this.traversePostorder(root.left);
+      this.traversePostorder(root.right);
+      this.traverseResult.push(root.val);
+      return this.traverseResult;
+    }
+  };
 }

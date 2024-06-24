@@ -2,7 +2,7 @@ import { useState } from "react";
 import { val } from "../constants";
 import { LinkedList } from "./LinkedList";
 import DisplayValuesLL from "./DisplayValuesLL";
-import { StructureTypeEnum, customModificationEnum } from "../constants";
+import { StructureTypeEnum, CustomModificationEnum } from "../constants";
 import { Navbar } from "../../components/Navbar";
 
 const LinkedListComponent = () => {
@@ -46,18 +46,18 @@ const LinkedListComponent = () => {
   const handleCustomMod = () => {
     if (list) {
       switch (customModification) {
-        case customModificationEnum.AppendAtIndex:
+        case CustomModificationEnum.AppendAtIndex:
           list.appendAtindex(parseInt(customModPositionValue), customModValue);
           break;
-        case customModificationEnum.AppendAfterValue:
+        case CustomModificationEnum.AppendAfterValue:
           list.appendAfterValue(customModPositionValue, customModValue);
           break;
 
-        case customModificationEnum.PopAtIndex:
+        case CustomModificationEnum.PopAtIndex:
           list.popIndexElement(parseInt(customModPositionValue));
           break;
 
-        case customModificationEnum.PopValue:
+        case CustomModificationEnum.PopValue:
           list.popElement(customModPositionValue);
 
           break;
@@ -97,27 +97,27 @@ const LinkedListComponent = () => {
       <div>
         <button
           onClick={() =>
-            setCustomModification(customModificationEnum.PopAtIndex)
+            setCustomModification(CustomModificationEnum.PopAtIndex)
           }>
-          {customModificationEnum.PopAtIndex}
+          {CustomModificationEnum.PopAtIndex}
         </button>
         <button
           onClick={() =>
-            setCustomModification(customModificationEnum.PopValue)
+            setCustomModification(CustomModificationEnum.PopValue)
           }>
-          {customModificationEnum.PopValue}
+          {CustomModificationEnum.PopValue}
         </button>
         <button
           onClick={() =>
-            setCustomModification(customModificationEnum.AppendAtIndex)
+            setCustomModification(CustomModificationEnum.AppendAtIndex)
           }>
-          {customModificationEnum.AppendAtIndex}
+          {CustomModificationEnum.AppendAtIndex}
         </button>
         <button
           onClick={() =>
-            setCustomModification(customModificationEnum.AppendAfterValue)
+            setCustomModification(CustomModificationEnum.AppendAfterValue)
           }>
-          {customModificationEnum.AppendAfterValue}
+          {CustomModificationEnum.AppendAfterValue}
         </button>
         {customModification !== "" && (
           <>

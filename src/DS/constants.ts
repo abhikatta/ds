@@ -1,6 +1,6 @@
 export type val = string | number;
 
-export enum customModificationEnum {
+export enum CustomModificationEnum {
   PopAtIndex = "PopAtIndex",
   PopValue = "PopValue",
   AppendAtIndex = "AppendAtIndex",
@@ -12,3 +12,9 @@ export const StructureTypeEnum = {
   DoublyLinkedList: "<--->",
   Tree: "/\\",
 };
+
+export enum TreeTraversalTypeEnum {
+  Inorder = "Inorder",
+  Preorder = "Preorder",
+  Postorder = "Postorder",
+}
