@@ -3,6 +3,7 @@ import { val } from "../SinglyLinkedList/types/node";
 import { LinkedList } from "./LinkedList";
 import DisplayValuesLL from "./DisplayValuesLL";
 import { customModificationEnum } from "./types/customModification";
+import { Navbar } from "../../components/Navbar";
 
 const LinkedListComponent = () => {
   const [inputString, setInputString] = useState("");
@@ -70,6 +71,7 @@ const LinkedListComponent = () => {
 
   return (
     <div>
+      <Navbar />
       <input
         disabled={submitClicked}
         value={inputString}

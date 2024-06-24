@@ -94,7 +94,7 @@ export class DoublyLinkedList {
       return element;
     }
   }
-  appendAtIndex(index: number, value: val) {
+  appendAtIndex(index: number, value: val): void {
     if (index > this.length || index < 0) {
       throw new Error("Index is invalid!");
     } else if (index === 0) {
@@ -120,7 +120,7 @@ export class DoublyLinkedList {
     }
   }
 
-  appendAfterValue(elementValue: val, value: val) {
+  appendAfterValue(elementValue: val, value: val): void {
     if (!this.head) {
       return;
     } else {
@@ -135,10 +135,78 @@ export class DoublyLinkedList {
           return;
         } else if (!current.next) {
           this.append(value);
+          this.length += 1;
           return;
         }
         current = current.next;
       }
     }
   }
+  popAtIndex = (index: number): DLLNodeElement | null => {
+    if (!this.head) {
+      return null;
+    } else if (index === 0) {
+      const ele = this.head;
+      this.head.prev = null;
+      this.head = this.head.next;
+      ele.prev = null;
+      ele.next = null;
+      this.length -= 1;
+      return ele;
+    } else if (index > this.length || index < 0) {
+      throw new Error(
+        `Invalid index! List length is ${this.length}, but recieved index is ${index}.`
+      );
+    } else {
+      let current = this.head;
+      let count = 0;
+      while (current.next) {
+        if (count + 1 === index) {
+          const element = current.next;
+          current.next = element.next;
+          element.prev = null;
+          element.next = null;
+          this.length -= 1;
+          return element;
+        }
+        count += 1;
+        current = current.next;
+      }
+      return null;
+    }
+  };
+  popValue = (elementValue: val): DLLNodeElement | null => {
+    if (!this.head) {
+      return null;
+    } else if (this.head.val === elementValue) {
+      if (this.head.next) {
+        this.length -= 1;
+        this.head = this.head.next;
+        return this.head;
+      } else {
+        this.length -= 1;
+        return this.head;
+      }
+    } else {
+      let current = this.head;
+      while (current.next) {
+        if (current.next.val === elementValue) {
+          const element = current.next;
+          if (!current.next.next) {
+            current.next = null;
+            this.length -= 1;
+            return element;
+          } else {
+            const nextNext = current.next.next;
+            current.next = nextNext;
+            nextNext.prev = current;
+            this.length -= 1;
+            return element;
+          }
+        }
+        current = current.next;
+      }
+      return null;
+    }
+  };
 }
