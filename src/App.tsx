@@ -1,4 +1,4 @@
-import { Routes, Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import LinkedListComponent from "./DS/SinglyLinkedList/LinkedListUI";
 import DoublyLinkedListUI from "./DS/DoublyLinkedList/DoublyLinkedListUI";
 import { Navbar } from "./components/Navbar";

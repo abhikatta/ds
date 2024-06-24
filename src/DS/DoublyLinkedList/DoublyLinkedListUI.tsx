@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { Navbar } from "../../components/Navbar";
+import { val } from "../constants";
 import { DoublyLinkedList } from "./DoublyLinkedList";
-import { val } from "../SinglyLinkedList/types/node";
-import {
-  StructureTypeEnum,
-  customModificationEnum,
-} from "../customModification";
+import { StructureTypeEnum, customModificationEnum } from "../constants";
 import DisplayValuesLL from "../SinglyLinkedList/DisplayValuesLL";
 
 const DoublyLinkedListUI = () => {

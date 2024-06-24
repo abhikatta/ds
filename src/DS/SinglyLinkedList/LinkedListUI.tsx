@@ -1,11 +1,8 @@
 import { useState } from "react";
-import { val } from "../SinglyLinkedList/types/node";
+import { val } from "../constants";
 import { LinkedList } from "./LinkedList";
 import DisplayValuesLL from "./DisplayValuesLL";
-import {
-  StructureTypeEnum,
-  customModificationEnum,
-} from "../customModification";
+import { StructureTypeEnum, customModificationEnum } from "../constants";
 import { Navbar } from "../../components/Navbar";
 
 const LinkedListComponent = () => {

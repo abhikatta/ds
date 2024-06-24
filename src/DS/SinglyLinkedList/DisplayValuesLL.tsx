@@ -1,4 +1,5 @@
-import { val } from "./types/node";
+import { val } from "../constants";
+
 const DisplayValuesLL = ({ values, type }: { values: val[]; type: string }) => {
   return (
     <div style={{ flexDirection: "row", display: "flex" }}>

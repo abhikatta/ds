@@ -1,3 +1,5 @@
+export type val = string | number;
+
 export enum customModificationEnum {
   PopAtIndex = "PopAtIndex",
   PopValue = "PopValue",

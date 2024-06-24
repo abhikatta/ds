@@ -1,4 +1,4 @@
-import { val } from "../SinglyLinkedList/types/node";
+import { val } from "../constants";
 import { DLLNodeElementType } from "./types";
 
 export class DLLNodeElement {

@@ -1,4 +1,4 @@
-export type val = string | number;
+import { val } from "../constants";
 
 export type NodeElementType = {
   val: val;
