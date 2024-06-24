@@ -27,8 +27,7 @@ export class DoublyLinkedList {
       return;
     } else {
       let current = this.head;
-      while (current.next) {
-        current = current.next;
+      while (current) {
         if (!current.next) {
           const element = new DLLNodeElement(value);
           current.next = element;
@@ -36,6 +35,7 @@ export class DoublyLinkedList {
           this.length += 1;
           return;
         }
+        current = current.next;
       }
     }
   }
@@ -62,6 +62,8 @@ export class DoublyLinkedList {
       const element = this.head;
       const nextElement = this.head.next;
       nextElement.prev = null;
+      this.head = nextElement;
+      element.next = null;
       this.length -= 1;
       return element;
     } else {
@@ -82,11 +84,10 @@ export class DoublyLinkedList {
       let current = this.head;
       let element = null;
       while (current.next) {
-        if (!current.next && current.prev) {
-          element = current;
-          const prevElement = current.prev;
-          prevElement.next = null;
-          this.length -= 1;
+        if (!current.next.next) {
+          element = current.next;
+          current.next = null;
+          element.prev = null;
           break;
         }
         current = current.next;
@@ -209,4 +210,20 @@ export class DoublyLinkedList {
       return null;
     }
   };
+  traverse(): val[] | null {
+    if (!this.head) {
+      return null;
+    } else {
+      const results = [];
+      let current = this.head;
+      while (current) {
+        results.push(current.val);
+        if (!current.next) {
+          break;
+        }
+        current = current.next;
+      }
+      return results;
+    }
+  }
 }
