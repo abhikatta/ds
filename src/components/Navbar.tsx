@@ -15,6 +15,7 @@ export const Navbar = () => {
       }}>
       <Link to={"/linkedlist"}>Linked List</Link>
       <Link to={"/doublylinkedlist"}>Doubly Linked List</Link>
+      <Link to={"/tree"}>Tree</Link>
     </nav>
   );
 };
