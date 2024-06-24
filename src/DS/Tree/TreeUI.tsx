@@ -21,15 +21,15 @@ const TreeUI = () => {
       switch (type) {
         case TreeTraversalTypeEnum.Inorder:
           res = newTree?.traverseInorder(newTree.root);
-          console.log(res);
           break;
         case TreeTraversalTypeEnum.Postorder:
           res = newTree?.traversePostorder(newTree.root);
-          console.log(res);
           break;
         case TreeTraversalTypeEnum.Preorder:
           res = newTree?.traversePreorder(newTree.root);
-          console.log(res);
+          break;
+        case TreeTraversalTypeEnum.BreadthFirst:
+          res = newTree.traverseBreadthFirst();
 
           break;
         default:
@@ -57,10 +57,14 @@ const TreeUI = () => {
         <button onClick={() => onClick(TreeTraversalTypeEnum.Postorder)}>
           Show Postorder
         </button>
+        <button onClick={() => onClick(TreeTraversalTypeEnum.BreadthFirst)}>
+          Show Breadth First
+        </button>
       </div>
       <DisplayValuesLL
         values={values}
-        type={StructureTypeEnum.Tree}></DisplayValuesLL>
+        type={StructureTypeEnum.Tree}
+      ></DisplayValuesLL>
     </div>
   );
 };

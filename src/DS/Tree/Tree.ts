@@ -74,4 +74,25 @@ export class Tree {
       return this.traverseResult;
     }
   };
+
+  traverseBreadthFirst() {
+    if (!this.root) {
+      return [];
+    }
+    const queue: (TreeNodeElement | null)[] = [this.root];
+    const result: number[] = [];
+    while (queue.length > 0) {
+      const current = queue.shift();
+      console.log(current);
+      current && result.push(current.val);
+      console.log(queue);
+      if (current?.left) {
+        queue.push(current.left);
+      }
+      if (current?.right) {
+        queue.push(current.right);
+      }
+    }
+    return result;
+  }
 }

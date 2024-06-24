@@ -17,4 +17,5 @@ export enum TreeTraversalTypeEnum {
   Inorder = "Inorder",
   Preorder = "Preorder",
   Postorder = "Postorder",
+  BreadthFirst = "BreadthFirst",
 }
