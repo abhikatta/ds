@@ -1,11 +1,10 @@
-import { val } from "../constants";
 import { TreeNodeElementType } from "./types";
 
 export class TreeNodeElement {
-  val: val;
+  val: number;
   left: TreeNodeElementType | null;
   right: TreeNodeElementType | null;
-  constructor(value: val) {
+  constructor(value: number) {
     this.val = value;
     this.left = null;
     this.right = null;
@@ -13,21 +12,33 @@ export class TreeNodeElement {
 }
 export class Tree {
   root: TreeNodeElement | null;
-  constructor(value: val) {
-    const node = new TreeNodeElement(value);
-    this.root = node;
+  constructor(value: number) {
+    this.root = new TreeNodeElement(value);
   }
-  append(value: val) {
+  addNode(value: number): void {
     if (!this.root) {
       this.root = new TreeNodeElement(value);
       return;
     } else {
-      if (value < this.root.val) {
-        this.root = this.root.left;
-        this.append(value);
-      } else if (value > this.root.val) {
-        this.root = this.root.right;
-        this.append(value);
+      let currentNode = this.root;
+      while (value !== currentNode.val) {
+        if (value > currentNode.val) {
+          if (currentNode.right) {
+            currentNode = currentNode.right;
+          } else {
+            const node = new TreeNodeElement(value);
+            currentNode.right = node;
+            break;
+          }
+        } else {
+          if (currentNode.left) {
+            currentNode = currentNode.left;
+          } else {
+            const node = new TreeNodeElement(value);
+            currentNode.left = node;
+            break;
+          }
+        }
       }
     }
   }

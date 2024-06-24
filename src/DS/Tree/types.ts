@@ -1,7 +1,5 @@
-import { val } from "../constants";
-
 export type TreeNodeElementType = {
-  val: val;
+  val: number;
   left: TreeNodeElementType | null;
   right: TreeNodeElementType | null;
 };
