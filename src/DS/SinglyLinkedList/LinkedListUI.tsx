@@ -2,7 +2,10 @@ import { useState } from "react";
 import { val } from "../SinglyLinkedList/types/node";
 import { LinkedList } from "./LinkedList";
 import DisplayValuesLL from "./DisplayValuesLL";
-import { customModificationEnum } from "./types/customModification";
+import {
+  StructureTypeEnum,
+  customModificationEnum,
+} from "../customModification";
 import { Navbar } from "../../components/Navbar";
 
 const LinkedListComponent = () => {
@@ -137,7 +140,9 @@ const LinkedListComponent = () => {
           </>
         )}
       </div>
-      {values && <DisplayValuesLL values={values} />}
+      {values && (
+        <DisplayValuesLL type={StructureTypeEnum.LinkedList} values={values} />
+      )}
     </div>
   );
 };

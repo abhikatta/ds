@@ -2,7 +2,10 @@ import { useState } from "react";
 import { Navbar } from "../../components/Navbar";
 import { DoublyLinkedList } from "./DoublyLinkedList";
 import { val } from "../SinglyLinkedList/types/node";
-import { customModificationEnum } from "../SinglyLinkedList/types/customModification";
+import {
+  StructureTypeEnum,
+  customModificationEnum,
+} from "../customModification";
 import DisplayValuesLL from "../SinglyLinkedList/DisplayValuesLL";
 
 const DoublyLinkedListUI = () => {
@@ -80,7 +83,7 @@ const DoublyLinkedListUI = () => {
           placeholder="Enter array elements with elements separated by spaces"
         />
         <button
-          disabled={submitClicked && inputString.trim().length <= 0}
+          disabled={submitClicked}
           onClick={() => {
             inputString.trim().length > 0 && handleShow();
           }}>
@@ -138,7 +141,12 @@ const DoublyLinkedListUI = () => {
             </>
           )}
         </div>
-        {values && <DisplayValuesLL values={values} />}
+        {values && (
+          <DisplayValuesLL
+            type={StructureTypeEnum.DoublyLinkedList}
+            values={values}
+          />
+        )}
       </div>
     </div>
   );
