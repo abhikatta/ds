@@ -12,6 +12,7 @@ export class TreeNodeElement {
 }
 export class Tree {
   root: TreeNodeElement | null;
+  private traverseResult: number[] = [];
   constructor(value: number) {
     this.root = new TreeNodeElement(value);
   }
@@ -40,6 +41,16 @@ export class Tree {
           }
         }
       }
+    }
+  }
+  traverseInorder(root: TreeNodeElement | null): number[] | null {
+    if (!root) {
+      return null;
+    } else {
+      this.traverseInorder(root.left);
+      this.traverseResult.push(root.val);
+      this.traverseInorder(root.right);
+      return this.traverseResult;
     }
   }
 }
