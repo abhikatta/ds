@@ -18,4 +18,6 @@ export enum TreeTraversalTypeEnum {
   Preorder = "Preorder",
   Postorder = "Postorder",
   BreadthFirst = "BreadthFirst",
+  GetHeight = "GetHeight",
+  GetDepth = "GetDepth",
 }

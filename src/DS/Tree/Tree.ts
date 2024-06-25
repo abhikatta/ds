@@ -95,4 +95,22 @@ export class Tree {
     }
     return result;
   }
+  height(root: TreeNodeElement | null) {
+    if (!root) {
+      return -1;
+    }
+    const leftHeight: number = this.height(root.left);
+    const rightHeight: number = this.height(root.right);
+
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
+
+  depth = (root: TreeNodeElement | null) => {
+    if (!root) {
+      return 0;
+    }
+    const leftDepth: number = this.height(root.left);
+    const rightDepth: number = this.height(root.right);
+    return Math.max(leftDepth, rightDepth) + 1;
+  };
 }

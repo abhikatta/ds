@@ -3,12 +3,13 @@ import { Navbar } from "../../components/Navbar";
 import { Tree } from "./Tree";
 import DisplayValuesLL from "../SinglyLinkedList/DisplayValuesLL";
 import { StructureTypeEnum, TreeTraversalTypeEnum } from "../constants";
+import { MetricType } from "./types";
 
 const TreeUI = () => {
   const [input, setInput] = useState<string>("");
   const [tree, setTree] = useState<Tree | null>(null);
   const [values, setValues] = useState<number[]>([]);
-
+  const [metric, setMetric] = useState<MetricType>({ type: "", value: 0 });
   function onClick(type: TreeTraversalTypeEnum) {
     if (input) {
       const values = input.trim().split(" ");
@@ -30,7 +31,12 @@ const TreeUI = () => {
           break;
         case TreeTraversalTypeEnum.BreadthFirst:
           res = newTree.traverseBreadthFirst();
-
+          break;
+        case TreeTraversalTypeEnum.GetHeight:
+          setMetric({ type: "Height", value: newTree.height(newTree.root) });
+          break;
+        case TreeTraversalTypeEnum.GetDepth:
+          setMetric({ type: "Depth", value: newTree.depth(newTree.root) });
           break;
         default:
           break;
@@ -60,7 +66,18 @@ const TreeUI = () => {
         <button onClick={() => onClick(TreeTraversalTypeEnum.BreadthFirst)}>
           Show Breadth First
         </button>
+        <button onClick={() => onClick(TreeTraversalTypeEnum.GetHeight)}>
+          Get Height
+        </button>
+        <button onClick={() => onClick(TreeTraversalTypeEnum.GetDepth)}>
+          Get Depth
+        </button>
       </div>
+      {metric.type !== "" && (
+        <p>
+          {metric.type}: {metric.value}
+        </p>
+      )}
       <DisplayValuesLL
         values={values}
         type={StructureTypeEnum.Tree}
