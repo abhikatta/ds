@@ -20,4 +20,5 @@ export enum TreeTraversalTypeEnum {
   BreadthFirst = "BreadthFirst",
   GetHeight = "GetHeight",
   GetDepth = "GetDepth",
+  PopNode = "PopNode",
 }

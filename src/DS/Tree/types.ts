@@ -8,3 +8,8 @@ export type MetricType = {
   type: "Height" | "Depth" | "";
   value: number;
 };
+
+export type popElementType = {
+  value: string;
+  isPopButtonPressed: boolean;
+};

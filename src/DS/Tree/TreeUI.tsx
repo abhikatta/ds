@@ -3,13 +3,17 @@ import { Navbar } from "../../components/Navbar";
 import { Tree } from "./Tree";
 import DisplayValuesLL from "../SinglyLinkedList/DisplayValuesLL";
 import { StructureTypeEnum, TreeTraversalTypeEnum } from "../constants";
-import { MetricType } from "./types";
+import { MetricType, popElementType } from "./types";
 
 const TreeUI = () => {
   const [input, setInput] = useState<string>("");
   const [tree, setTree] = useState<Tree | null>(null);
   const [values, setValues] = useState<number[]>([]);
   const [metric, setMetric] = useState<MetricType>({ type: "", value: 0 });
+  const [popElement, setPopElement] = useState<popElementType>({
+    value: "",
+    isPopButtonPressed: false,
+  });
   function onClick(type: TreeTraversalTypeEnum) {
     if (input) {
       const values = input.trim().split(" ");
@@ -46,6 +50,13 @@ const TreeUI = () => {
     }
   }
 
+  const Pop = () => {
+    if (tree && popElement.value.length > 0) {
+      tree.popNode(tree.root, parseInt(popElement.value));
+      setValues(tree.traverseBreadthFirst());
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -72,6 +83,22 @@ const TreeUI = () => {
         <button onClick={() => onClick(TreeTraversalTypeEnum.GetDepth)}>
           Get Depth
         </button>
+        <button
+          onClick={() => setPopElement({ value: "", isPopButtonPressed: true })}
+        >
+          Pop Element
+        </button>
+        {popElement.isPopButtonPressed && (
+          <>
+            <input
+              placeholder="Enter element to pop"
+              onChange={(e) =>
+                setPopElement({ ...popElement, value: e.target.value })
+              }
+            />
+            <button onClick={Pop}>Pop</button>
+          </>
+        )}
       </div>
       {metric.type !== "" && (
         <p>

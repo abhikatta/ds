@@ -83,9 +83,7 @@ export class Tree {
     const result: number[] = [];
     while (queue.length > 0) {
       const current = queue.shift();
-      console.log(current);
       current && result.push(current.val);
-      console.log(queue);
       if (current?.left) {
         queue.push(current.left);
       }
@@ -112,5 +110,47 @@ export class Tree {
     const leftDepth: number = this.height(root.left);
     const rightDepth: number = this.height(root.right);
     return Math.max(leftDepth, rightDepth) + 1;
+  };
+
+  /**
+   * 1. no child => direct remove
+   * 2. 1 sub left/right child => prev -> child remove current
+   * 3. 2 sub child => take any one and replace current with the child and child becomes parent to other child
+   */
+  popNode = (
+    node: TreeNodeElement | null,
+    value: number
+  ): TreeNodeElement | null => {
+    if (!node) {
+      return node;
+    }
+    if (node.val > value) {
+      node.left = this.popNode(node.left, value);
+    } else if (node.val < value) {
+      node.right = this.popNode(node.right, value);
+    } else {
+      if (node.left === null && node.right === null) {
+        node = null;
+      } else if (!node?.left && node?.right) {
+        node = node.right;
+      } else if (!node?.right && node?.left) {
+        node = node.left;
+      } else if (node.right) {
+        let temp = node.right;
+        while (temp.left) {
+          temp = temp.left;
+        }
+        node.val = temp.val;
+        node.right = this.popNode(node?.right, node?.val);
+      } else if (node.left) {
+        let temp = node.left;
+        while (temp.right) {
+          temp = temp.right;
+        }
+        node.val = temp.val;
+        node.left = this.popNode(node?.left, node?.val);
+      }
+    }
+    return node;
   };
 }
