@@ -1,3 +1,5 @@
+import { listType } from "./types";
+
 export class GraphMatrix {
   matrix: number[][] = [];
   constructor(numNodes: number) {
@@ -19,9 +21,6 @@ export class GraphMatrix {
   }
 }
 
-type listType = {
-  [key: number]: number[];
-};
 export class GraphList {
   list: listType = {};
   constructor() {

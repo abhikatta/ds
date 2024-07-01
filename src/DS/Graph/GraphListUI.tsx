@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { Navbar } from "../../components/Navbar";
-import { GraphMatrix } from "./Graph";
+import { listType } from "./types";
+import { GraphList } from "./Graph";
 const GraphListUI = () => {
   const [input, setInput] = useState<number>();
-  const [graph, setGraph] = useState<GraphMatrix>();
+  const [graph, setGraph] = useState<GraphList>();
   const [isAddNode, setIsAddNode] = useState<boolean>(false);
   const [addNodeValues, setAddNodeValues] = useState<{
     from: number;
     to: number;
   }>();
-  const [displayValues, setDisplayValues] = useState<number[][]>();
+  const [displayValues, setDisplayValues] = useState<listType>();
 
   const handleSubmit = () => {
     if (input) {
-      const graph = new GraphMatrix(input);
+      const graph = new GraphList();
       setGraph(graph);
     }
     showValues();
@@ -28,7 +29,8 @@ const GraphListUI = () => {
     setAddNodeValues({ from: parseInt(from), to: parseInt(to) });
   };
   const showValues = () => {
-    setDisplayValues(graph?.matrix);
+    setDisplayValues(graph?.list);
+    console.log(displayValues);
   };
 
   return (
@@ -48,8 +50,6 @@ const GraphListUI = () => {
           />
           <button
             onClick={() => {
-              addNodeValues &&
-                graph?.addEdge(addNodeValues?.from, addNodeValues?.to);
               showValues();
             }}
           >
@@ -58,7 +58,7 @@ const GraphListUI = () => {
         </>
       )}
 
-      <div>{displayValues}</div>
+      {/* <div>{displayValues}</div> */}
     </div>
   );
 };
