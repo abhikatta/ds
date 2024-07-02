@@ -9,12 +9,12 @@ export class GraphMatrix {
     }
   }
   addEdge(fromNode: number, toNode: number) {
-    this.matrix[fromNode][toNode] = 1;
-    this.matrix[toNode][fromNode] = 1;
+    this.matrix[fromNode - 1][toNode - 1] = 1;
+    this.matrix[toNode - 1][fromNode - 1] = 1;
   }
   removeEdge(fromNode: number, toNode: number) {
-    this.matrix[fromNode][toNode] = 0;
-    this.matrix[toNode][fromNode] = 0;
+    this.matrix[fromNode - 1][toNode - 1] = 0;
+    this.matrix[toNode - 1][fromNode - 1] = 0;
   }
   isEdge(fromNode: number, toNode: number) {
     return this.matrix[fromNode][toNode] === 1;

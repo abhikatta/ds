@@ -30,7 +30,6 @@ const GraphListUI = () => {
   };
   const showValues = () => {
     setDisplayValues(graph?.list);
-    console.log(displayValues);
   };
 
   return (
