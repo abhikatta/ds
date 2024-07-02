@@ -30,8 +30,11 @@ export class GraphList {
     this.list[node] = [];
   }
   addEdge(fromNode: number, toNode: number) {
+    if (!this.list[fromNode]) {
+      this.list[fromNode] = [];
+    }
     this.list[fromNode].push(toNode);
-    this.list[toNode].push(fromNode);
+    this.list[toNode] && this.list[toNode].push(fromNode);
   }
   removeEdge(fromNode: number, toNode: number) {
     this.list[fromNode] = this.list[fromNode].filter((node) => node !== toNode);
