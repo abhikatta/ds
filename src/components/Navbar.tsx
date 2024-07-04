@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import { NavbarMain } from "../DS/constants";
 
-export const Navbar = () => {
+export const Navbar = ({
+  navElements = NavbarMain,
+}: {
+  navElements: string[];
+}) => {
   return (
     <nav
       style={{
@@ -14,13 +19,13 @@ export const Navbar = () => {
         gap: "100px",
       }}
     >
-      <Link to={"/linkedlist"}>Linked List</Link>
-      <Link to={"/doublylinkedlist"}>Doubly Linked List</Link>
-      <Link to={"/tree"}>Tree</Link>
-      <Link to={"/graphmatrix"}>Graph Array</Link>
-      <Link to={"/graphlist"}>Graph List</Link>
-      <Link to={"/bubblesort"}>Bubble Sort</Link>
-      <Link to={"/selectionsort"}>Selection Sort</Link>
+      {navElements.map((item, index) => {
+        return (
+          <Link key={index} to={`/${item}`}>
+            {item}
+          </Link>
+        );
+      })}
     </nav>
   );
 };
