@@ -37,6 +37,9 @@ const GraphMatrixUI = () => {
       >
         Submit
       </button>
+      {/* <button onClick={() => console.log(graph?.matrixBFS(graph.matrix[0][0]))}>
+        Matrix BFS
+      </button> */}
       <button onClick={() => setIsAddNode((prev) => !prev)}>AddNode</button>
       {isAddNode && (
         <>

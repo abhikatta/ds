@@ -5,6 +5,8 @@ import { Navbar } from "./components/Navbar";
 import TreeUI from "./DS/Tree/TreeUI";
 import GraphMatrixUI from "./DS/Graph/GraphArrayUI";
 import GraphListUI from "./DS/Graph/GraphListUI";
+import BubbleSortUI from "./A/BubbleSort";
+import SelectionSortUI from "./A/SelectionSort";
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
         <Route element={<GraphMatrixUI />} path="/graphmatrix"></Route>
         <Route element={<GraphMatrixUI />} path="/graphmatrix"></Route>
         <Route element={<GraphListUI />} path="/graphlist"></Route>
+        <Route element={<BubbleSortUI />} path="/bubblesort"></Route>
+        <Route element={<SelectionSortUI />} path="/selectionsort"></Route>
       </Routes>
     </Router>
   );

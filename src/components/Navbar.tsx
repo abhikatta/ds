@@ -19,6 +19,8 @@ export const Navbar = () => {
       <Link to={"/tree"}>Tree</Link>
       <Link to={"/graphmatrix"}>Graph Array</Link>
       <Link to={"/graphlist"}>Graph List</Link>
+      <Link to={"/bubblesort"}>Bubble Sort</Link>
+      <Link to={"/selectionsort"}>Selection Sort</Link>
     </nav>
   );
 };

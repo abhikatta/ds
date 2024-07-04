@@ -17,8 +17,9 @@ export class GraphMatrix {
     this.matrix[toNode - 1][fromNode - 1] = 0;
   }
   isEdge(fromNode: number, toNode: number) {
-    return this.matrix[fromNode][toNode] === 1;
+    return this.matrix[fromNode - 1][toNode - 1] === 1;
   }
+  // bfs = (rootNode: number) => {};
 }
 
 export class GraphList {
