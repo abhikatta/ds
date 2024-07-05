@@ -44,4 +44,44 @@ export class GraphList {
   isEdge(fromNode: number, toNode: number) {
     return this.list[fromNode].includes(toNode);
   }
+  bfs(startNode: number) {
+    const queue: number[] = [startNode];
+    const visited: { [key: number]: boolean } = {};
+    const result: number[] = [];
+
+    visited[startNode] = true;
+
+    while (queue.length > 0) {
+      const currentNode = queue.shift()!;
+      result.push(currentNode);
+
+      for (const neighbor of this.list[currentNode]) {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        }
+      }
+    }
+
+    return result;
+  }
+
+  dfs(startNode: number) {
+    const visited: { [key: number]: boolean } = {};
+    const result: number[] = [];
+
+    const dfsHelper = (node: number) => {
+      if (!visited[node]) {
+        visited[node] = true;
+        result.push(node);
+
+        for (const neighbor of this.list[node]) {
+          dfsHelper(neighbor);
+        }
+      }
+    };
+
+    dfsHelper(startNode);
+    return result;
+  }
 }

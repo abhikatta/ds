@@ -4,7 +4,7 @@ import { NavbarMain } from "../DS/constants";
 export const Navbar = ({
   navElements = NavbarMain,
 }: {
-  navElements: string[];
+  navElements?: string[];
 }) => {
   return (
     <nav
