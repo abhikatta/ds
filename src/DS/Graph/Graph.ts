@@ -19,7 +19,44 @@ export class GraphMatrix {
   isEdge(fromNode: number, toNode: number) {
     return this.matrix[fromNode - 1][toNode - 1] === 1;
   }
-  // bfs = (rootNode: number) => {};
+  bfs = (rootNode: number) => {
+    const queue = [rootNode];
+    const visited: boolean[] = new Array(this.matrix.length).fill(false);
+    const res: number[] = [];
+    // due to indexiing
+    visited[rootNode - 1] = true;
+    while (queue.length > 0) {
+      const node = queue.shift()!;
+      res.push(node);
+      for (let i = 0; i < this.matrix.length; i++) {
+        if (this.matrix[node - 1][i] === 1 && !visited[i]) {
+          visited[i] = true;
+          queue.push(i + 1);
+        }
+      }
+    }
+  };
+
+  dfs(rootNode: number) {
+    const visited: boolean[] = new Array(this.matrix.length).fill(false);
+    const result: number[] = [];
+
+    const dfsHelper = (node: number) => {
+      if (!visited[node - 1]) {
+        visited[node - 1] = true;
+        result.push(node);
+
+        for (let i = 0; i < this.matrix.length; i++) {
+          if (this.matrix[node - 1][i] === 1 && !visited[i]) {
+            dfsHelper(i + 1);
+          }
+        }
+      }
+    };
+
+    dfsHelper(rootNode);
+    return result;
+  }
 }
 
 export class GraphList {
